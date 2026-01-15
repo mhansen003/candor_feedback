@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candor Pilot - Comprehensive Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            background: #f8f9fa;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 5px solid;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
+
+        .metric-card.primary { border-left-color: #667eea; }
+        .metric-card.success { border-left-color: #2ECC71; }
+        .metric-card.warning { border-left-color: #F39C12; }
+        .metric-card.danger { border-left-color: #E74C3C; }
+
+        .metric-card h3 {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .metric-card .value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .metric-card .label {
+            font-size: 0.95em;
+            color: #999;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #667eea;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .visualization {
+            width: 100%;
+            margin: 30px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .tab:hover {
+            background: #e0e0e0;
+        }
+
+        .tab.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .issue-list {
+            list-style: none;
+        }
+
+        .issue-item {
+            background: #f8f9fa;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-left: 5px solid;
+            transition: all 0.3s;
+        }
+
+        .issue-item:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+
+        .issue-item.severity-3 { border-left-color: #E74C3C; }
+        .issue-item.severity-2 { border-left-color: #F39C12; }
+        .issue-item.severity-1 { border-left-color: #2ECC71; }
+
+        .issue-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .issue-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            flex: 1;
+        }
+
+        .badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .badge.open { background: #3498DB; color: white; }
+        .badge.resolved { background: #2ECC71; color: white; }
+        .badge.escalated { background: #E74C3C; color: white; }
+        .badge.feedback { background: #F39C12; color: white; }
+        .badge.known { background: #9B59B6; color: white; }
+        .badge.workaround { background: #1ABC9C; color: white; }
+        .badge.requested { background: #34495E; color: white; }
+
+        .issue-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .issue-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .success-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .success-item {
+            background: linear-gradient(135deg, #2ECC71 0%, #27AE60 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: start;
+            gap: 15px;
+        }
+
+        .success-icon {
+            font-size: 2em;
+        }
+
+        .recommendations {
+            display: grid;
+            gap: 30px;
+        }
+
+        .rec-category {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .rec-category h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .rec-category ul {
+            list-style: none;
+        }
+
+        .rec-category li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .rec-category li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .reporter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .reporter-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-top: 4px solid #667eea;
+        }
+
+        .reporter-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .reporter-role {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .reporter-issues {
+            font-size: 2em;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .issue-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Candor Pilot - Comprehensive Analysis</h1>
+            <p>Analysis Date: January 15, 2026 | 120 Pilot Participants</p>
+        </header>
+
+        <div class="metrics-grid">
+            <div class="metric-card primary">
+                <h3>Total Issues</h3>
+                <div class="value">17</div>
+                <div class="label">Tracked & Analyzed</div>
+            </div>
+            <div class="metric-card warning">
+                <h3>Average Severity</h3>
+                <div class="value">2.24</div>
+                <div class="label">Out of 3.0</div>
+            </div>
+            <div class="metric-card success">
+                <h3>Resolved</h3>
+                <div class="value">17.6%</div>
+                <div class="label">3 Issues Fixed</div>
+            </div>
+            <div class="metric-card danger">
+                <h3>High Priority</h3>
+                <div class="value">5</div>
+                <div class="label">Severity Level 3</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Tabs Navigation -->
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('overview')">Overview</button>
+                <button class="tab" onclick="showTab('issues')">All Issues</button>
+                <button class="tab" onclick="showTab('reporters')">Who's Reporting</button>
+                <button class="tab" onclick="showTab('successes')">What's Working</button>
+                <button class="tab" onclick="showTab('recommendations')">Recommendations</button>
+            </div>
+
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-content active">
+                <div class="section">
+                    <h2>📊 Visualization Dashboard</h2>
+                    <img src="candor_comprehensive_heatmap.png" alt="Comprehensive Analysis" class="visualization">
+                </div>
+
+                <div class="section">
+                    <h2>🎯 Executive Summary</h2>
+                    <div class="metrics-grid">
+                        <div class="metric-card primary">
+                            <h3>Issue Categories</h3>
+                            <div class="value">5</div>
+                            <div class="label">Condition Logic, Document Reading, UX, Config, Processing</div>
+                        </div>
+                        <div class="metric-card warning">
+                            <h3>Open Issues</h3>
+                            <div class="value">41.2%</div>
+                            <div class="label">7 issues being triaged</div>
+                        </div>
+                        <div class="metric-card danger">
+                            <h3>Escalated</h3>
+                            <div class="value">2</div>
+                            <div class="label">Need vendor attention</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>📈 Key Insights</h2>
+                    <ul class="issue-list">
+                        <li class="issue-item severity-3">
+                            <div class="issue-title">✓ Document Reading & Condition Logic are top categories</div>
+                            <p>Tied at 5 issues each - represents core AI/ML functionality needing refinement</p>
+                        </li>
+                        <li class="issue-item severity-2">
+                            <div class="issue-title">✓ Processors are most engaged</div>
+                            <p>71% of named reporters are processors - shows hands-on pilot usage</p>
+                        </li>
+                        <li class="issue-item severity-2">
+                            <div class="issue-title">✓ Quick wins available</div>
+                            <p>User Experience issues are UX/UI focused and can be resolved quickly</p>
+                        </li>
+                        <li class="issue-item severity-1">
+                            <div class="issue-title">✓ Income calculation working perfectly</div>
+                            <p>Core functionality successful - replaces Loan Beam as intended</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Issues Tab -->
+            <div id="issues" class="tab-content">
+                <div class="section">
+                    <h2>🔴 High Priority Issues (Severity 3)</h2>
+                    <ul class="issue-list">
+                        <li class="issue-item severity-3">
+                            <div class="issue-header">
+                                <div class="issue-title">Fraud Alert condition firing incorrectly</div>
+                                <span class="badge open">Open</span>
+                            </div>
+                            <p>Condition regarding Fraud Alert on CBR when there is no Fraud Alert from borrower. Logic needs review - asking for 2 year tax returns when only need 1.</p>
+                            <div class="issue-meta">
+                                <span>👤 Melissa Chapman (Underwriter)</span>
+                                <span>📅 1/15/2026</span>
+                                <span>🎯 Condition Logic</span>
+                                <span>⚠️ High Impact</span>
+                            </div>
+                        </li>
+                        <li class="issue-item severity-3">
+                            <div class="issue-header">
+                                <div class="issue-title">Paystub name mismatch</div>
+                                <span class="badge escalated">Escalated</span>
+                            </div>
+                            <p>Document reading not matching paystub names correctly</p>
+                            <div class="issue-meta">
+                                <span>📅 1/15/2026</span>
+                                <span>🎯 Document Reading</span>
+                                <span>⚠️ High Impact</span>
+                            </div>
+                        </li>
+                        <li class="issue-item severity-3">
+                            <div class="issue-header">
+                                <div class="issue-title">Wrong credit report version</div>
+                                <span class="badge resolved">Resolved</span>
+                            </div>
+                            <p>System was pulling incorrect version of credit reports</p>
+                            <div class="issue-meta">
+                                <span>📅 1/15/2026</span>
+                                <span>🎯 Document Reading</span>
+                                <span>⚠️ High Impact</span>
+                            </div>
+                        </li>
+                        <li class="issue-item severity-3">
+                            <div class="issue-header">
+                                <div class="issue-title">Results showing before scraping completes</div>
+                                <span class="badge feedback">Feedback</span>
+                            </div>
+                            <p>Initial results appear before all documents are scraped, causing confusion</p>
+                            <div class="issue-meta">
+                                <span>📅 1/15/2026</span>
+                                <span>🎯 Processing Time</span>
+                                <span>⚠️ High Impact</span>
+                            </div>
+                        </li>
+                        <li class="issue-item severity-3">
+                            <div class="issue-header">
+                                <div class="issue-title">CRA not in configuration</div>
+                                <span class="badge resolved">Resolved</span>
+                            </div>
+                            <p>Credit reporting agency configuration was missing</p>
+                            <div class="issue-meta">
+                                <span>📅 1/15/2026</span>
+                                <span>🎯 Configuration</span>
+                                <span>⚠️ High Impact</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>🟡 Medium Priority Issues (Severity 2)</h2>
+                    <ul class="issue-list">
+                        <li class="issue-item severity-2">
+                            <div class="issue-header">
+                                <div class="issue-title">1040 Statement 8 HOA dues not read</div>
+                                <span class="badge escalated">Escalated</span>
+                            </div>
+                            <p>Candor did not read federal statement 8 on 1040s for HOA dues</p>
+                            <div class="issue-meta">
+                                <span>👤 Scott Watson (Processor)</span>
+                                <span>📅 1/15/2026</span>
+                                <span>🎯 Document Reading</span>
+                            </div>
+                        </li>
+                        <li class="issue-item severity-2">
+                            <div class="issue-header">
+                                <div class="issue-title">Bank statement request mismatch</div>
+                                <span class="badge open">Open</span>
+                            </div>
+                            <p>Candor requesting 2 months when LP only required 1 month</p>
+                            <div class="issue-meta">
+                                <span>👤 Dawn Schubert (Underwriter)</span>
+                                <span>📅 01.15.2026</span>
+                                <span>🎯 Condition Logic</span>
+                            </div>
+                        </li>
+                        <li class="issue-item severity-2">
+                            <div class="issue-header">
+                                <div class="issue-title">PIW Appraisal condition issue</div>
+                                <span class="badge open">Open</span>
+                            </div>
+                            <p>LP PIW conditioned for full Appraisal. Assets requested but already in file</p>
+                            <div class="issue-meta">
+                                <span>👤 Leigh Warnick (Processor)</span>
+                                <span>📅 1/15/2026</span>
+                                <span>🎯 Condition Logic</span>
+                            </div>
+                        </li>
+                        <li class="issue-item severity-2">
+                            <div class="issue-header">
+                                <div class="issue-title">Homeowners Insurance in file not recognized</div>
+                                <span class="badge open">Open</span>
+                            </div>
+                            <p>Homeowners Insurance is being requested but it is already in file</p>
+                            <div class="issue-meta">
+                                <span>👤 Kim McClure (Processor)</span>
+                                <span>📅 1/15/2026</span>
+                                <span>🎯 Document Reading</span>
+                            </div>
+                        </li>
+                        <li class="issue-item severity-2">
+                            <div class="issue-header">
+                                <div class="issue-title">No Candor pipeline indicator</div>
+                                <span class="badge requested">Requested</span>
+                            </div>
+                            <p>Need visual indicator in pipeline to show which files are using Candor</p>
+                            <div class="issue-meta">
+                                <span>📅 1/15/2026</span>
+                                <span>🎯 User Experience</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Reporters Tab -->
+            <div id="reporters" class="tab-content">
+                <div class="section">
+                    <h2>👥 Who's Reporting Issues</h2>
+                    <div class="reporter-grid">
+                        <div class="reporter-card">
+                            <div class="reporter-name">Leigh Warnick</div>
+                            <div class="reporter-role">Processor</div>
+                            <div class="reporter-issues">2 issues</div>
+                            <ul style="margin-top: 15px; list-style: none;">
+                                <li>• PIW Appraisal condition</li>
+                                <li>• One month statement request</li>
+                            </ul>
+                        </div>
+                        <div class="reporter-card">
+                            <div class="reporter-name">Kim McClure</div>
+                            <div class="reporter-role">Processor</div>
+                            <div class="reporter-issues">2 issues</div>
+                            <ul style="margin-top: 15px; list-style: none;">
+                                <li>• HOI not recognized</li>
+                                <li>• Coverage amount validation</li>
+                            </ul>
+                        </div>
+                        <div class="reporter-card">
+                            <div class="reporter-name">Melissa Chapman</div>
+                            <div class="reporter-role">Underwriter</div>
+                            <div class="reporter-issues">1 issue</div>
+                            <ul style="margin-top: 15px; list-style: none;">
+                                <li>• Fraud Alert condition logic</li>
+                            </ul>
+                        </div>
+                        <div class="reporter-card">
+                            <div class="reporter-name">Scott Watson</div>
+                            <div class="reporter-role">Processor</div>
+                            <div class="reporter-issues">1 issue</div>
+                            <ul style="margin-top: 15px; list-style: none;">
+                                <li>• 1040 HOA dues reading</li>
+                            </ul>
+                        </div>
+                        <div class="reporter-card">
+                            <div class="reporter-name">Dawn Schubert</div>
+                            <div class="reporter-role">Underwriter</div>
+                            <div class="reporter-issues">1 issue</div>
+                            <ul style="margin-top: 15px; list-style: none;">
+                                <li>• Bank statement mismatch</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 40px;">
+                        <h3 style="color: #667eea; margin-bottom: 15px;">By Role</h3>
+                        <div class="metrics-grid">
+                            <div class="metric-card primary">
+                                <h3>Processors</h3>
+                                <div class="value">5</div>
+                                <div class="label">71% of named reporters</div>
+                            </div>
+                            <div class="metric-card warning">
+                                <h3>Underwriters</h3>
+                                <div class="value">2</div>
+                                <div class="label">29% of named reporters</div>
+                            </div>
+                        </div>
+                        <p style="margin-top: 20px; color: #666;">This shows excellent cross-functional engagement in the pilot program!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Successes Tab -->
+            <div id="successes" class="tab-content">
+                <div class="section">
+                    <h2>✅ What's Working Well</h2>
+                    <div class="success-list">
+                        <div class="success-item">
+                            <div class="success-icon">✓</div>
+                            <div>2 files processed successfully with no issues - clean execution</div>
+                        </div>
+                        <div class="success-item">
+                            <div class="success-icon">✓</div>
+                            <div>Income calculation working correctly (replaces Loan Beam functionality)</div>
+                        </div>
+                        <div class="success-item">
+                            <div class="success-icon">✓</div>
+                            <div>Quick escalation and resolution process - team very responsive</div>
+                        </div>
+                        <div class="success-item">
+                            <div class="success-icon">✓</div>
+                            <div>Team proactive with feedback and communication</div>
+                        </div>
+                        <div class="success-item">
+                            <div class="success-icon">✓</div>
+                            <div>Credit report issues resolved quickly after escalation</div>
+                        </div>
+                        <div class="success-item">
+                            <div class="success-icon">✓</div>
+                            <div>Core underwriting logic functioning as expected</div>
+                        </div>
+                        <div class="success-item">
+                            <div class="success-icon">✓</div>
+                            <div>Integration with existing systems working smoothly</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommendations Tab -->
+            <div id="recommendations" class="tab-content">
+                <div class="section">
+                    <h2>🎯 Strategic Recommendations</h2>
+                    <div class="recommendations">
+                        <div class="rec-category">
+                            <h3>⚡ Immediate Actions (This Week)</h3>
+                            <ul>
+                                <li>Add Candor indicator field to pipeline reports (Requested by team)</li>
+                                <li>Delay showing results until document scraping completes (UX improvement)</li>
+                                <li>Resolve Fraud Alert condition logic bug (High severity, impacts UW workflow)</li>
+                                <li>Fix paystub name mismatch issue (Escalated, blocking files)</li>
+                            </ul>
+                        </div>
+
+                        <div class="rec-category">
+                            <h3>📅 Short-Term Fixes (Next 2 Weeks)</h3>
+                            <ul>
+                                <li>Improve 1040 Schedule 8 reading for HOA dues (Escalated)</li>
+                                <li>Review PIW appraisal condition logic for accuracy</li>
+                                <li>Fix bank statement condition when LP only requires 1 month</li>
+                                <li>Add configuration validation checks for CRA and AUS type</li>
+                            </ul>
+                        </div>
+
+                        <div class="rec-category">
+                            <h3>🚀 Medium-Term Enhancements (Next Month)</h3>
+                            <ul>
+                                <li>Enhance document recognition (HOI, statements already in file)</li>
+                                <li>Optimize processing time communication (set expectations)</li>
+                                <li>Review condition logic for D1C paystub scenarios</li>
+                                <li>Improve policy validation logic for coverage amounts</li>
+                            </ul>
+                        </div>
+
+                        <div class="rec-category">
+                            <h3>📚 Process Improvements</h3>
+                            <ul>
+                                <li>Create Candor-specific training materials based on common issues</li>
+                                <li>Establish weekly sync to review new issues and resolutions</li>
+                                <li>Document workarounds for known issues in knowledge base</li>
+                                <li>Celebrate wins - income calculation success should be highlighted!</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>📊 Candor Pilot Comprehensive Analysis | Generated: January 15, 2026</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Data Source: Candor Pilot Group Teams Chat + Candor Pilot Feedback.xlsx</p>
+        </footer>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
