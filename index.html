@@ -6,6 +6,20 @@
     <title>Candor Pilot - Comprehensive Analysis</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <style>
+        :root {
+            --bg-primary: #0a0f1a;
+            --bg-secondary: #111827;
+            --bg-card: #1a2234;
+            --accent-blue: #3b82f6;
+            --accent-teal: #14b8a6;
+            --accent-amber: #f59e0b;
+            --accent-rose: #f43f5e;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-subtle: rgba(255,255,255,0.08);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,8 +28,8 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
             padding: 20px;
         }
@@ -23,28 +37,47 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            background: white;
+            background: var(--bg-secondary);
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
             overflow: hidden;
+            border: 1px solid var(--border-subtle);
         }
 
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-teal) 100%);
             color: white;
             padding: 40px;
             text-align: center;
+            position: relative;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
         }
 
         header p {
             font-size: 1.2em;
             opacity: 0.95;
+            position: relative;
+            z-index: 1;
         }
 
         .metrics-grid {
@@ -52,49 +85,75 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             padding: 40px;
-            background: #f8f9fa;
+            background: var(--bg-primary);
         }
 
         .metric-card {
-            background: white;
+            background: var(--bg-card);
             padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-left: 5px solid;
+            border: 1px solid var(--border-subtle);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
         }
 
         .metric-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
+            border-color: var(--accent-blue);
         }
 
-        .metric-card.primary { border-left-color: #667eea; }
-        .metric-card.success { border-left-color: #2ECC71; }
-        .metric-card.warning { border-left-color: #F39C12; }
-        .metric-card.danger { border-left-color: #E74C3C; }
+        .metric-card.primary { border-left: 3px solid var(--accent-blue); }
+        .metric-card.success { border-left: 3px solid var(--accent-teal); }
+        .metric-card.warning { border-left: 3px solid var(--accent-amber); }
+        .metric-card.danger { border-left: 3px solid var(--accent-rose); }
 
         .metric-card h3 {
             font-size: 0.9em;
             text-transform: uppercase;
-            color: #666;
+            color: var(--text-muted);
             margin-bottom: 10px;
+            letter-spacing: 0.1em;
         }
 
         .metric-card .value {
             font-size: 2.5em;
             font-weight: bold;
-            color: #333;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 5px;
+        }
+
+        .metric-card.warning .value {
+            background: linear-gradient(135deg, var(--accent-amber), var(--accent-rose));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .metric-card.success .value {
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .metric-card.danger .value {
+            background: linear-gradient(135deg, var(--accent-rose), var(--accent-amber));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .metric-card .label {
             font-size: 0.95em;
-            color: #999;
+            color: var(--text-muted);
         }
 
         .content {
             padding: 40px;
+            background: var(--bg-secondary);
         }
 
         .section {
@@ -104,9 +163,9 @@
         .section h2 {
             font-size: 2em;
             margin-bottom: 20px;
-            color: #667eea;
+            color: var(--text-primary);
             padding-bottom: 10px;
-            border-bottom: 3px solid #667eea;
+            border-bottom: 2px solid var(--accent-blue);
         }
 
         .charts-grid {
@@ -117,15 +176,20 @@
         }
 
         .chart-container {
-            background: white;
+            background: var(--bg-card);
             padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-subtle);
             min-height: 350px;
+            transition: border-color 0.3s;
+        }
+
+        .chart-container:hover {
+            border-color: var(--accent-blue);
         }
 
         .chart-container h3 {
-            color: #667eea;
+            color: var(--accent-blue);
             margin-bottom: 20px;
             font-size: 1.2em;
             text-align: center;
@@ -145,21 +209,25 @@
 
         .tab {
             padding: 12px 24px;
-            background: #f0f0f0;
-            border: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
             border-radius: 8px;
             cursor: pointer;
             font-size: 1em;
             transition: all 0.3s;
+            color: var(--text-secondary);
         }
 
         .tab:hover {
-            background: #e0e0e0;
+            background: var(--bg-primary);
+            border-color: var(--accent-blue);
+            color: var(--text-primary);
         }
 
         .tab.active {
-            background: #667eea;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
             color: white;
+            border-color: transparent;
         }
 
         .tab-content {
@@ -181,22 +249,24 @@
         }
 
         .issue-item {
-            background: #f8f9fa;
+            background: var(--bg-card);
             padding: 20px;
             margin-bottom: 15px;
             border-radius: 10px;
-            border-left: 5px solid;
+            border: 1px solid var(--border-subtle);
+            border-left: 4px solid;
             transition: all 0.3s;
         }
 
         .issue-item:hover {
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
             transform: translateX(5px);
+            border-color: var(--accent-blue);
         }
 
-        .issue-item.severity-3 { border-left-color: #E74C3C; }
-        .issue-item.severity-2 { border-left-color: #F39C12; }
-        .issue-item.severity-1 { border-left-color: #2ECC71; }
+        .issue-item.severity-3 { border-left-color: var(--accent-rose); }
+        .issue-item.severity-2 { border-left-color: var(--accent-amber); }
+        .issue-item.severity-1 { border-left-color: var(--accent-teal); }
 
         .issue-header {
             display: flex;
@@ -210,8 +280,13 @@
         .issue-title {
             font-size: 1.2em;
             font-weight: bold;
-            color: #333;
+            color: var(--text-primary);
             flex: 1;
+        }
+
+        .issue-item p {
+            color: var(--text-secondary);
+            line-height: 1.6;
         }
 
         .badge {
@@ -222,19 +297,19 @@
             text-transform: uppercase;
         }
 
-        .badge.open { background: #3498DB; color: white; }
-        .badge.resolved { background: #2ECC71; color: white; }
-        .badge.escalated { background: #E74C3C; color: white; }
-        .badge.feedback { background: #F39C12; color: white; }
+        .badge.open { background: var(--accent-blue); color: white; }
+        .badge.resolved { background: var(--accent-teal); color: white; }
+        .badge.escalated { background: var(--accent-rose); color: white; }
+        .badge.feedback { background: var(--accent-amber); color: white; }
         .badge.known { background: #9B59B6; color: white; }
         .badge.workaround { background: #1ABC9C; color: white; }
-        .badge.requested { background: #34495E; color: white; }
+        .badge.requested { background: #64748b; color: white; }
 
         .issue-meta {
             display: flex;
             gap: 20px;
             font-size: 0.9em;
-            color: #666;
+            color: var(--text-muted);
             margin-top: 10px;
             flex-wrap: wrap;
         }
@@ -252,18 +327,25 @@
         }
 
         .success-item {
-            background: linear-gradient(135deg, #2ECC71 0%, #27AE60 100%);
-            color: white;
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(59, 130, 246, 0.2));
+            color: var(--text-primary);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid var(--accent-teal);
             display: flex;
             align-items: start;
             gap: 15px;
+            transition: all 0.3s;
+        }
+
+        .success-item:hover {
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+            transform: translateY(-3px);
         }
 
         .success-icon {
             font-size: 2em;
+            color: var(--accent-teal);
         }
 
         .recommendations {
@@ -272,13 +354,19 @@
         }
 
         .rec-category {
-            background: #f8f9fa;
+            background: var(--bg-card);
             padding: 25px;
             border-radius: 10px;
+            border: 1px solid var(--border-subtle);
+            transition: border-color 0.3s;
+        }
+
+        .rec-category:hover {
+            border-color: var(--accent-blue);
         }
 
         .rec-category h3 {
-            color: #667eea;
+            color: var(--accent-blue);
             margin-bottom: 15px;
             font-size: 1.3em;
         }
@@ -291,14 +379,16 @@
             padding: 10px 0;
             padding-left: 30px;
             position: relative;
+            color: var(--text-secondary);
         }
 
         .rec-category li:before {
             content: "→";
             position: absolute;
             left: 0;
-            color: #667eea;
+            color: var(--accent-teal);
             font-weight: bold;
+            font-size: 1.2em;
         }
 
         .reporter-grid {
@@ -308,37 +398,57 @@
         }
 
         .reporter-card {
-            background: white;
+            background: var(--bg-card);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-top: 4px solid #667eea;
+            border: 1px solid var(--border-subtle);
+            border-top: 4px solid var(--accent-blue);
+            transition: all 0.3s;
+        }
+
+        .reporter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
         }
 
         .reporter-name {
             font-size: 1.2em;
             font-weight: bold;
-            color: #333;
+            color: var(--text-primary);
             margin-bottom: 5px;
         }
 
         .reporter-role {
-            color: #666;
+            color: var(--text-muted);
             font-size: 0.9em;
             margin-bottom: 15px;
         }
 
         .reporter-issues {
             font-size: 2em;
-            color: #667eea;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-weight: bold;
         }
 
+        .reporter-card ul {
+            list-style: none;
+        }
+
+        .reporter-card li {
+            color: var(--text-secondary);
+            padding: 5px 0;
+            font-size: 0.95em;
+        }
+
         footer {
-            background: #2c3e50;
-            color: white;
+            background: var(--bg-primary);
+            color: var(--text-secondary);
             text-align: center;
             padding: 30px;
+            border-top: 1px solid var(--border-subtle);
         }
 
         @media (max-width: 768px) {
@@ -685,7 +795,7 @@
                     </div>
 
                     <div style="margin-top: 40px;">
-                        <h3 style="color: #667eea; margin-bottom: 15px;">By Role</h3>
+                        <h3 style="color: var(--accent-blue); margin-bottom: 15px;">By Role</h3>
                         <div class="metrics-grid">
                             <div class="metric-card primary">
                                 <h3>Processors</h3>
@@ -698,7 +808,7 @@
                                 <div class="label">29% of named reporters</div>
                             </div>
                         </div>
-                        <p style="margin-top: 20px; color: #666;">This shows excellent cross-functional engagement in the pilot program!</p>
+                        <p style="margin-top: 20px; color: var(--text-secondary);">This shows excellent cross-functional engagement in the pilot program!</p>
                     </div>
                 </div>
             </div>
@@ -812,9 +922,19 @@
             event.target.classList.add('active');
         }
 
-        // Chart.js default configuration
+        // Chart.js default configuration for dark theme
         Chart.defaults.font.family = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-        Chart.defaults.color = '#333';
+        Chart.defaults.color = '#94a3b8';
+        Chart.defaults.borderColor = 'rgba(255,255,255,0.08)';
+
+        const chartColors = {
+            blue: '#3b82f6',
+            teal: '#14b8a6',
+            amber: '#f59e0b',
+            rose: '#f43f5e',
+            purple: '#a855f7',
+            green: '#10b981'
+        };
 
         // Issues by Reporter Chart
         const reporterCtx = document.getElementById('reporterChart').getContext('2d');
@@ -825,7 +945,7 @@
                 datasets: [{
                     label: 'Issues Reported',
                     data: [2, 2, 1, 1, 1],
-                    backgroundColor: '#3498DB',
+                    backgroundColor: chartColors.blue,
                     borderRadius: 8
                 }]
             },
@@ -839,7 +959,11 @@
                 scales: {
                     x: {
                         beginAtZero: true,
-                        ticks: { stepSize: 1 }
+                        ticks: { stepSize: 1 },
+                        grid: { color: 'rgba(255,255,255,0.05)' }
+                    },
+                    y: {
+                        grid: { display: false }
                     }
                 }
             }
@@ -854,7 +978,7 @@
                 datasets: [{
                     label: 'Number of Issues',
                     data: [5, 4, 3, 3, 2],
-                    backgroundColor: ['#E74C3C', '#F39C12', '#3498DB', '#9B59B6', '#1ABC9C'],
+                    backgroundColor: [chartColors.rose, chartColors.amber, chartColors.blue, chartColors.purple, chartColors.teal],
                     borderRadius: 8
                 }]
             },
@@ -867,7 +991,11 @@
                 scales: {
                     y: {
                         beginAtZero: true,
-                        ticks: { stepSize: 1 }
+                        ticks: { stepSize: 1 },
+                        grid: { color: 'rgba(255,255,255,0.05)' }
+                    },
+                    x: {
+                        grid: { display: false }
                     }
                 }
             }
@@ -881,7 +1009,7 @@
                 labels: ['Open', 'Resolved', 'Escalated', 'Feedback', 'Known', 'Workaround', 'Requested'],
                 datasets: [{
                     data: [7, 3, 2, 2, 1, 1, 1],
-                    backgroundColor: ['#3498DB', '#2ECC71', '#E74C3C', '#F39C12', '#9B59B6', '#1ABC9C', '#34495E']
+                    backgroundColor: [chartColors.blue, chartColors.teal, chartColors.rose, chartColors.amber, chartColors.purple, chartColors.green, '#64748b']
                 }]
             },
             options: {
@@ -892,7 +1020,8 @@
                         position: 'right',
                         labels: {
                             padding: 15,
-                            font: { size: 11 }
+                            font: { size: 11 },
+                            color: '#94a3b8'
                         }
                     }
                 }
@@ -908,7 +1037,7 @@
                 datasets: [{
                     label: 'Issues Reported',
                     data: [5, 2],
-                    backgroundColor: ['#E74C3C', '#F39C12'],
+                    backgroundColor: [chartColors.rose, chartColors.amber],
                     borderRadius: 8
                 }]
             },
@@ -921,7 +1050,11 @@
                 scales: {
                     y: {
                         beginAtZero: true,
-                        ticks: { stepSize: 1 }
+                        ticks: { stepSize: 1 },
+                        grid: { color: 'rgba(255,255,255,0.05)' }
+                    },
+                    x: {
+                        grid: { display: false }
                     }
                 }
             }
@@ -935,7 +1068,7 @@
                 labels: ['High (3)', 'Medium (2)', 'Low (1)'],
                 datasets: [{
                     data: [5, 11, 1],
-                    backgroundColor: ['#E74C3C', '#F39C12', '#2ECC71']
+                    backgroundColor: [chartColors.rose, chartColors.amber, chartColors.teal]
                 }]
             },
             options: {
@@ -945,7 +1078,8 @@
                     legend: {
                         position: 'bottom',
                         labels: {
-                            padding: 15
+                            padding: 15,
+                            color: '#94a3b8'
                         }
                     }
                 }
@@ -961,7 +1095,7 @@
                 datasets: [{
                     label: 'Number of Issues',
                     data: [5, 11, 1],
-                    backgroundColor: ['#E74C3C', '#F39C12', '#2ECC71'],
+                    backgroundColor: [chartColors.rose, chartColors.amber, chartColors.teal],
                     borderRadius: 8
                 }]
             },
@@ -974,7 +1108,11 @@
                 scales: {
                     y: {
                         beginAtZero: true,
-                        ticks: { stepSize: 2 }
+                        ticks: { stepSize: 2 },
+                        grid: { color: 'rgba(255,255,255,0.05)' }
+                    },
+                    x: {
+                        grid: { display: false }
                     }
                 }
             }
