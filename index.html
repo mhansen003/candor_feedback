@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Candor Pilot - Comprehensive Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -108,11 +109,31 @@
             border-bottom: 3px solid #667eea;
         }
 
-        .visualization {
-            width: 100%;
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
             margin: 30px 0;
+        }
+
+        .chart-container {
+            background: white;
+            padding: 25px;
             border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            min-height: 350px;
+        }
+
+        .chart-container h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 300px;
         }
 
         .tabs {
@@ -329,6 +350,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+
             .issue-header {
                 flex-direction: column;
             }
@@ -378,8 +403,57 @@
             <!-- Overview Tab -->
             <div id="overview" class="tab-content active">
                 <div class="section">
-                    <h2>📊 Visualization Dashboard</h2>
-                    <img src="candor_comprehensive_heatmap.png" alt="Comprehensive Analysis" class="visualization">
+                    <h2>📊 Interactive Visualization Dashboard</h2>
+
+                    <div class="charts-grid">
+                        <!-- Issues by Reporter -->
+                        <div class="chart-container">
+                            <h3>Issues by Reporter</h3>
+                            <div class="chart-wrapper">
+                                <canvas id="reporterChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Issues by Category -->
+                        <div class="chart-container">
+                            <h3>Issues by Category</h3>
+                            <div class="chart-wrapper">
+                                <canvas id="categoryChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Issue Status Distribution -->
+                        <div class="chart-container">
+                            <h3>Issue Status Distribution</h3>
+                            <div class="chart-wrapper">
+                                <canvas id="statusChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Issues by Role -->
+                        <div class="chart-container">
+                            <h3>Issues by Role</h3>
+                            <div class="chart-wrapper">
+                                <canvas id="roleChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Severity Distribution -->
+                        <div class="chart-container">
+                            <h3>Severity Distribution</h3>
+                            <div class="chart-wrapper">
+                                <canvas id="severityChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Impact Distribution -->
+                        <div class="chart-container">
+                            <h3>Impact Distribution</h3>
+                            <div class="chart-wrapper">
+                                <canvas id="impactChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="section">
@@ -737,6 +811,174 @@
             // Add active class to clicked tab
             event.target.classList.add('active');
         }
+
+        // Chart.js default configuration
+        Chart.defaults.font.family = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+        Chart.defaults.color = '#333';
+
+        // Issues by Reporter Chart
+        const reporterCtx = document.getElementById('reporterChart').getContext('2d');
+        new Chart(reporterCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Leigh Warnick', 'Kim McClure', 'Melissa Chapman', 'Scott Watson', 'Dawn Schubert'],
+                datasets: [{
+                    label: 'Issues Reported',
+                    data: [2, 2, 1, 1, 1],
+                    backgroundColor: '#3498DB',
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: { stepSize: 1 }
+                    }
+                }
+            }
+        });
+
+        // Issues by Category Chart
+        const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+        new Chart(categoryCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Condition Logic', 'Document Reading', 'User Experience', 'Configuration', 'Processing Time'],
+                datasets: [{
+                    label: 'Number of Issues',
+                    data: [5, 4, 3, 3, 2],
+                    backgroundColor: ['#E74C3C', '#F39C12', '#3498DB', '#9B59B6', '#1ABC9C'],
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { stepSize: 1 }
+                    }
+                }
+            }
+        });
+
+        // Status Distribution Chart
+        const statusCtx = document.getElementById('statusChart').getContext('2d');
+        new Chart(statusCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Open', 'Resolved', 'Escalated', 'Feedback', 'Known', 'Workaround', 'Requested'],
+                datasets: [{
+                    data: [7, 3, 2, 2, 1, 1, 1],
+                    backgroundColor: ['#3498DB', '#2ECC71', '#E74C3C', '#F39C12', '#9B59B6', '#1ABC9C', '#34495E']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            padding: 15,
+                            font: { size: 11 }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Issues by Role Chart
+        const roleCtx = document.getElementById('roleChart').getContext('2d');
+        new Chart(roleCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Processor', 'Underwriter'],
+                datasets: [{
+                    label: 'Issues Reported',
+                    data: [5, 2],
+                    backgroundColor: ['#E74C3C', '#F39C12'],
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { stepSize: 1 }
+                    }
+                }
+            }
+        });
+
+        // Severity Distribution Chart
+        const severityCtx = document.getElementById('severityChart').getContext('2d');
+        new Chart(severityCtx, {
+            type: 'pie',
+            data: {
+                labels: ['High (3)', 'Medium (2)', 'Low (1)'],
+                datasets: [{
+                    data: [5, 11, 1],
+                    backgroundColor: ['#E74C3C', '#F39C12', '#2ECC71']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15
+                        }
+                    }
+                }
+            }
+        });
+
+        // Impact Distribution Chart
+        const impactCtx = document.getElementById('impactChart').getContext('2d');
+        new Chart(impactCtx, {
+            type: 'bar',
+            data: {
+                labels: ['High', 'Medium', 'Low'],
+                datasets: [{
+                    label: 'Number of Issues',
+                    data: [5, 11, 1],
+                    backgroundColor: ['#E74C3C', '#F39C12', '#2ECC71'],
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { stepSize: 2 }
+                    }
+                }
+            }
+        });
     </script>
 </body>
 </html>
