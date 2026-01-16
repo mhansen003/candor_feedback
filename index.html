@@ -591,17 +591,18 @@
                 <button class="tab" onclick="showTab('calendar')">📅 Calendar Heatmap</button>
                 <div class="dropdown" id="detailsDropdown">
                     <button class="dropdown-toggle" onclick="toggleDropdown()">
-                        📊 Details
+                        📋 Issues (18)
                         <span style="font-size: 0.8em;">▼</span>
                     </button>
                     <div class="dropdown-menu">
-                        <button class="dropdown-item" onclick="showTabFromDropdown('issues')">Issues (18)</button>
+                        <button class="dropdown-item" onclick="showTabFromDropdown('issues')">All Issues (18)</button>
                         <button class="dropdown-item" onclick="showTabFromDropdown('resolved')">Resolved (6)</button>
                         <button class="dropdown-item" onclick="showTabFromDropdown('reporters')">Reporters (9)</button>
                         <button class="dropdown-item" onclick="showTabFromDropdown('enhancements')">Enhancements (5)</button>
                     </div>
                 </div>
                 <button class="tab" onclick="showTab('recommendations')">🤖 AI Recommendations</button>
+                <button class="tab" onclick="showTab('domoLoans')">📋 Candor Loans (88)</button>
             </div>
 
             <!-- Overview Tab -->
@@ -1574,6 +1575,93 @@
             </div>
         </div>
 
+        <!-- Candor Loans (Domo) Tab -->
+        <div id="domoLoans" class="tab-content">
+            <div class="section">
+                <h2>📋 Candor Pilot Loans (88 Total from Domo)</h2>
+                <p style="margin-bottom: 20px; color: var(--text-secondary);">Live data from Domo: "DS - Candor Eligible Loans for Pilot Users"</p>
+
+                <!-- Filter Controls -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 25px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; color: var(--text-muted); font-size: 0.9em;">🔍 Search All Columns</label>
+                        <input type="text" id="searchAll" placeholder="Type to filter..."
+                               style="width: 100%; padding: 10px; background: var(--bg-card); border: 1px solid var(--border-subtle);
+                                      border-radius: 6px; color: var(--text-primary); font-size: 14px;"
+                               oninput="filterTable()">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; color: var(--text-muted); font-size: 0.9em;">📝 Loan Status</label>
+                        <select id="filterStatus" onchange="filterTable()"
+                                style="width: 100%; padding: 10px; background: var(--bg-card); border: 1px solid var(--border-subtle);
+                                       border-radius: 6px; color: var(--text-primary); font-size: 14px;">
+                            <option value="">All Statuses</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; color: var(--text-muted); font-size: 0.9em;">👤 Processor</label>
+                        <select id="filterProcessor" onchange="filterTable()"
+                                style="width: 100%; padding: 10px; background: var(--bg-card); border: 1px solid var(--border-subtle);
+                                       border-radius: 6px; color: var(--text-primary); font-size: 14px;">
+                            <option value="">All Processors</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; color: var(--text-muted); font-size: 0.9em;">📊 Program</label>
+                        <select id="filterProgram" onchange="filterTable()"
+                                style="width: 100%; padding: 10px; background: var(--bg-card); border: 1px solid var(--border-subtle);
+                                       border-radius: 6px; color: var(--text-primary); font-size: 14px;">
+                            <option value="">All Programs</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Results Counter -->
+                <div id="resultsCount" style="margin-bottom: 15px; color: var(--text-muted); font-size: 0.95em;"></div>
+
+                <!-- Table Container with Scroll -->
+                <div style="overflow-x: auto; border: 1px solid var(--border-subtle); border-radius: 8px;">
+                    <table id="candorLoansTable" style="width: 100%; border-collapse: collapse; background: var(--bg-card);">
+                        <thead style="position: sticky; top: 0; background: var(--bg-secondary); z-index: 10;">
+                            <tr>
+                                <th onclick="sortTable(0)" style="cursor: pointer; padding: 12px; text-align: left; border-bottom: 2px solid var(--border-subtle);">
+                                    Loan # <span class="sort-arrow">⇅</span>
+                                </th>
+                                <th onclick="sortTable(1)" style="cursor: pointer; padding: 12px; text-align: left; border-bottom: 2px solid var(--border-subtle);">
+                                    Borrower <span class="sort-arrow">⇅</span>
+                                </th>
+                                <th onclick="sortTable(2)" style="cursor: pointer; padding: 12px; text-align: left; border-bottom: 2px solid var(--border-subtle);">
+                                    Status <span class="sort-arrow">⇅</span>
+                                </th>
+                                <th onclick="sortTable(3)" style="cursor: pointer; padding: 12px; text-align: left; border-bottom: 2px solid var(--border-subtle);">
+                                    Processor <span class="sort-arrow">⇅</span>
+                                </th>
+                                <th onclick="sortTable(4)" style="cursor: pointer; padding: 12px; text-align: left; border-bottom: 2px solid var(--border-subtle);">
+                                    Underwriter <span class="sort-arrow">⇅</span>
+                                </th>
+                                <th onclick="sortTable(5)" style="cursor: pointer; padding: 12px; text-align: left; border-bottom: 2px solid var(--border-subtle);">
+                                    Program <span class="sort-arrow">⇅</span>
+                                </th>
+                                <th onclick="sortTable(6)" style="cursor: pointer; padding: 12px; text-align: left; border-bottom: 2px solid var(--border-subtle);">
+                                    File Recv'd <span class="sort-arrow">⇅</span>
+                                </th>
+                                <th onclick="sortTable(7)" style="cursor: pointer; padding: 12px; text-align: left; border-bottom: 2px solid var(--border-subtle);">
+                                    Candor Run <span class="sort-arrow">⇅</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="loansTableBody">
+                            <tr>
+                                <td colspan="8" style="padding: 40px; text-align: center; color: var(--text-muted);">
+                                    Loading loans data...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
         <footer>
             <p>📊 Candor Pilot Excel Feedback Analysis | Generated: January 15, 2026</p>
             <p style="margin-top: 10px; opacity: 0.8;">Data Source: Candor Pilot Feedback.xlsx (Excel file only)</p>
@@ -1852,6 +1940,181 @@
                 }
             }
         });
+
+        // Candor Loans Table - Load, Filter, and Sort Functions
+        let candorLoansData = [];
+        let filteredLoansData = [];
+
+        // Load Candor loans data from JSON file
+        async function loadCandorLoans() {
+            try {
+                const response = await fetch('candor-loans.json');
+                candorLoansData = await response.json();
+                filteredLoansData = [...candorLoansData];
+                populateFilters();
+                renderTable();
+            } catch (error) {
+                console.error('Error loading Candor loans:', error);
+                document.getElementById('loansTableBody').innerHTML = `
+                    <tr><td colspan="8" style="padding: 40px; text-align: center; color: var(--accent-rose);">
+                        ❌ Error loading loans data. Please refresh the page.
+                    </td></tr>
+                `;
+            }
+        }
+
+        // Populate filter dropdowns with unique values
+        function populateFilters() {
+            const statuses = [...new Set(candorLoansData.map(loan => loan.LoanStatusDesc).filter(Boolean))].sort();
+            const processors = [...new Set(candorLoansData.map(loan => loan.LoanProcessor).filter(Boolean))].sort();
+            const programs = [...new Set(candorLoansData.map(loan => loan.LoanProgramName).filter(Boolean))].sort();
+
+            const statusSelect = document.getElementById('filterStatus');
+            statuses.forEach(status => {
+                const option = document.createElement('option');
+                option.value = status;
+                option.textContent = status;
+                statusSelect.appendChild(option);
+            });
+
+            const processorSelect = document.getElementById('filterProcessor');
+            processors.forEach(processor => {
+                const option = document.createElement('option');
+                option.value = processor;
+                option.textContent = processor;
+                processorSelect.appendChild(option);
+            });
+
+            const programSelect = document.getElementById('filterProgram');
+            programs.forEach(program => {
+                const option = document.createElement('option');
+                option.value = program;
+                option.textContent = program;
+                programSelect.appendChild(option);
+            });
+        }
+
+        // Filter table based on search and dropdown selections
+        function filterTable() {
+            const searchText = document.getElementById('searchAll').value.toLowerCase();
+            const statusFilter = document.getElementById('filterStatus').value;
+            const processorFilter = document.getElementById('filterProcessor').value;
+            const programFilter = document.getElementById('filterProgram').value;
+
+            filteredLoansData = candorLoansData.filter(loan => {
+                const matchesSearch = !searchText ||
+                    Object.values(loan).some(val =>
+                        String(val).toLowerCase().includes(searchText)
+                    );
+                const matchesStatus = !statusFilter || loan.LoanStatusDesc === statusFilter;
+                const matchesProcessor = !processorFilter || loan.LoanProcessor === processorFilter;
+                const matchesProgram = !programFilter || loan.LoanProgramName === programFilter;
+
+                return matchesSearch && matchesStatus && matchesProcessor && matchesProgram;
+            });
+
+            renderTable();
+        }
+
+        // Sort table by column
+        let sortDirection = {};
+        function sortTable(columnIndex) {
+            const columns = ['FileName', 'BorrowerLastName', 'LoanStatusDesc', 'LoanProcessor',
+                           'Underwriter', 'LoanProgramName', 'FileRecvdDate', 'DT_InitCandorRun'];
+            const column = columns[columnIndex];
+
+            // Toggle sort direction
+            sortDirection[column] = sortDirection[column] === 'asc' ? 'desc' : 'asc';
+
+            filteredLoansData.sort((a, b) => {
+                let valA = a[column] || '';
+                let valB = b[column] || '';
+
+                // Handle date sorting
+                if (column.includes('Date')) {
+                    valA = new Date(valA || '1900-01-01');
+                    valB = new Date(valB || '1900-01-01');
+                } else {
+                    valA = String(valA).toLowerCase();
+                    valB = String(valB).toLowerCase();
+                }
+
+                if (sortDirection[column] === 'asc') {
+                    return valA > valB ? 1 : valA < valB ? -1 : 0;
+                } else {
+                    return valA < valB ? 1 : valA > valB ? -1 : 0;
+                }
+            });
+
+            renderTable();
+        }
+
+        // Render table rows
+        function renderTable() {
+            const tbody = document.getElementById('loansTableBody');
+            const resultsCount = document.getElementById('resultsCount');
+
+            resultsCount.textContent = `Showing ${filteredLoansData.length} of ${candorLoansData.length} loans`;
+
+            if (filteredLoansData.length === 0) {
+                tbody.innerHTML = `
+                    <tr><td colspan="8" style="padding: 40px; text-align: center; color: var(--text-muted);">
+                        No loans match the current filters.
+                    </td></tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = filteredLoansData.map(loan => {
+                const borrowerName = `${loan.BorrowerFirstName || ''} ${loan.BorrowerLastName || ''}`.trim();
+                const statusColor = getStatusColor(loan.LoanStatusDesc);
+
+                return `
+                    <tr style="border-bottom: 1px solid var(--border-subtle); transition: background 0.2s;"
+                        onmouseover="this.style.background='rgba(59, 130, 246, 0.1)'"
+                        onmouseout="this.style.background='transparent'">
+                        <td style="padding: 12px; font-weight: 500; color: var(--accent-blue);">
+                            ${loan.FileName || '-'}
+                        </td>
+                        <td style="padding: 12px;">${borrowerName || '-'}</td>
+                        <td style="padding: 12px;">
+                            <span style="background: ${statusColor}; padding: 4px 10px; border-radius: 12px;
+                                         font-size: 0.85em; font-weight: 500;">
+                                ${loan.LoanStatusDesc || '-'}
+                            </span>
+                        </td>
+                        <td style="padding: 12px;">${loan.LoanProcessor || '-'}</td>
+                        <td style="padding: 12px;">${loan.Underwriter || '-'}</td>
+                        <td style="padding: 12px; font-size: 0.9em;">${loan.LoanProgramName || '-'}</td>
+                        <td style="padding: 12px;">${formatDate(loan.FileRecvdDate)}</td>
+                        <td style="padding: 12px;">${formatDate(loan.DT_InitCandorRun)}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Helper function to get status color
+        function getStatusColor(status) {
+            const statusColors = {
+                'Funded': 'rgba(16, 185, 129, 0.2)',
+                'Clear to Close': 'rgba(20, 184, 166, 0.2)',
+                'Approved': 'rgba(59, 130, 246, 0.2)',
+                'UW Received': 'rgba(245, 158, 11, 0.2)',
+                'File Received': 'rgba(168, 85, 247, 0.2)',
+                'Suspended': 'rgba(244, 63, 94, 0.2)'
+            };
+            return statusColors[status] || 'rgba(148, 163, 184, 0.2)';
+        }
+
+        // Helper function to format dates
+        function formatDate(dateStr) {
+            if (!dateStr) return '-';
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        }
+
+        // Load data when page loads
+        loadCandorLoans();
     </script>
 </body>
 </html>
