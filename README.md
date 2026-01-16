@@ -1,31 +1,31 @@
-# Candor Pilot - Comprehensive Analysis Dashboard
+# Candor Pilot - Excel Feedback Analysis Dashboard
 
-🚀 Interactive dashboard for analyzing Candor pilot feedback and issues.
+🚀 Interactive dashboard for analyzing Candor pilot feedback from Excel file.
 
 ## Overview
 
-This dashboard provides a comprehensive analysis of the Candor pilot program, tracking 17 issues across 5 categories with detailed reporter information, severity levels, and strategic recommendations.
+This dashboard provides a comprehensive analysis of the Candor pilot program, tracking 7 issues across 3 categories with detailed reporter information, severity levels, and strategic recommendations.
 
 ## Key Metrics
 
-- **17 Total Issues** tracked and analyzed
-- **2.24/3.0** average severity score
-- **17.6%** resolution rate
-- **5 High-priority** issues requiring immediate attention
+- **7 Total Issues** tracked from Excel feedback
+- **2.14/3.0** average severity score
+- **85.7%** open issue rate (6 of 7)
+- **1 High-priority** issue requiring immediate attention
+- **1 Escalated** issue needing vendor attention
 
 ## Features
 
 - 📊 Interactive tabbed interface
-- 📈 Comprehensive visualization dashboard
-- 👥 Reporter tracking and attribution
-- ✅ Success stories and what's working
+- 📈 Comprehensive visualization dashboard with 6 charts
+- 👥 Reporter tracking and attribution (5 reporters)
+- ✅ Pilot engagement metrics
 - 🎯 Prioritized recommendations
 
 ## Data Sources
 
-- Candor Pilot Group Teams Chat
-- Candor Pilot Feedback.xlsx
-- 120 pilot participants
+- Candor Pilot Feedback.xlsx (Excel file only)
+- 5 active reporters: 3 Processors, 2 Underwriters
 
 ## Analysis Date
 

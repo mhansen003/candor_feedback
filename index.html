@@ -473,29 +473,29 @@
 <body>
     <div class="container">
         <header>
-            <h1>🚀 Candor Pilot - Comprehensive Analysis</h1>
-            <p>Analysis Date: January 15, 2026 | 120 Pilot Participants</p>
+            <h1>🚀 Candor Pilot - Excel Feedback Analysis</h1>
+            <p>Analysis Date: January 15, 2026 | Data Source: Candor Pilot Feedback.xlsx</p>
         </header>
 
         <div class="metrics-grid">
             <div class="metric-card primary">
                 <h3>Total Issues</h3>
-                <div class="value">17</div>
-                <div class="label">Tracked & Analyzed</div>
+                <div class="value">7</div>
+                <div class="label">From Excel Feedback</div>
             </div>
             <div class="metric-card warning">
                 <h3>Average Severity</h3>
-                <div class="value">2.24</div>
+                <div class="value">2.14</div>
                 <div class="label">Out of 3.0</div>
             </div>
-            <div class="metric-card success">
-                <h3>Resolved</h3>
-                <div class="value">17.6%</div>
-                <div class="label">3 Issues Fixed</div>
+            <div class="metric-card danger">
+                <h3>Open</h3>
+                <div class="value">85.7%</div>
+                <div class="label">6 Issues Open</div>
             </div>
             <div class="metric-card danger">
                 <h3>High Priority</h3>
-                <div class="value">5</div>
+                <div class="value">1</div>
                 <div class="label">Severity Level 3</div>
             </div>
         </div>
@@ -504,10 +504,10 @@
             <!-- Tabs Navigation -->
             <div class="tabs">
                 <button class="tab active" onclick="showTab('overview')">Overview</button>
-                <button class="tab" onclick="showTab('issues')">All Issues (17)</button>
+                <button class="tab" onclick="showTab('issues')">All Issues (7)</button>
                 <button class="tab" onclick="showTab('reporters')">Who's Reporting (5)</button>
-                <button class="tab" onclick="showTab('successes')">What's Working (7)</button>
-                <button class="tab" onclick="showTab('recommendations')">Recommendations (16)</button>
+                <button class="tab" onclick="showTab('successes')">What's Working (4)</button>
+                <button class="tab" onclick="showTab('recommendations')">Recommendations (10)</button>
             </div>
 
             <!-- Overview Tab -->
@@ -571,18 +571,18 @@
                     <div class="metrics-grid">
                         <div class="metric-card primary">
                             <h3>Issue Categories</h3>
-                            <div class="value">5</div>
-                            <div class="label">Condition Logic, Document Reading, UX, Config, Processing</div>
+                            <div class="value">3</div>
+                            <div class="label">Condition Logic (4), Document Reading (2), Configuration (1)</div>
                         </div>
                         <div class="metric-card warning">
                             <h3>Open Issues</h3>
-                            <div class="value">41.2%</div>
-                            <div class="label">7 issues being triaged</div>
+                            <div class="value">85.7%</div>
+                            <div class="label">6 issues being triaged</div>
                         </div>
                         <div class="metric-card danger">
                             <h3>Escalated</h3>
-                            <div class="value">2</div>
-                            <div class="label">Need vendor attention</div>
+                            <div class="value">1</div>
+                            <div class="label">Needs attention</div>
                         </div>
                     </div>
                 </div>
@@ -591,20 +591,20 @@
                     <h2>📈 Key Insights</h2>
                     <ul class="issue-list">
                         <li class="issue-item severity-3">
-                            <div class="issue-title">✓ Document Reading & Condition Logic are top categories</div>
-                            <p>Tied at 5 issues each - represents core AI/ML functionality needing refinement</p>
+                            <div class="issue-title">✓ Condition Logic is the primary issue category</div>
+                            <p>4 of 7 issues (57%) involve condition logic - focus area for improvements</p>
                         </li>
                         <li class="issue-item severity-2">
                             <div class="issue-title">✓ Processors are most engaged</div>
-                            <p>71% of named reporters are processors - shows hands-on pilot usage</p>
+                            <p>5 of 7 issues (71%) reported by processors - shows hands-on pilot usage</p>
                         </li>
                         <li class="issue-item severity-2">
-                            <div class="issue-title">✓ Quick wins available</div>
-                            <p>User Experience issues are UX/UI focused and can be resolved quickly</p>
+                            <div class="issue-title">✓ Only 1 high-severity issue</div>
+                            <p>Fraud Alert condition logic - the rest are medium severity (2/3)</p>
                         </li>
                         <li class="issue-item severity-1">
-                            <div class="issue-title">✓ Income calculation working perfectly</div>
-                            <p>Core functionality successful - replaces Loan Beam as intended</p>
+                            <div class="issue-title">✓ Strong cross-functional feedback</div>
+                            <p>Both Processors and Underwriters actively reporting - good pilot engagement</p>
                         </li>
                     </ul>
                 </div>
@@ -620,59 +620,11 @@
                                 <div class="issue-title">Fraud Alert condition firing incorrectly</div>
                                 <span class="badge open">Open</span>
                             </div>
-                            <p>Condition regarding Fraud Alert on CBR when there is no Fraud Alert from borrower. Logic needs review - asking for 2 year tax returns when only need 1.</p>
+                            <p><strong>Loan:</strong> RSO000002708 (Nguyen) | Condition regarding Fraud Alert on CBR when there is no Fraud Alert from borrower. Logic needs review - asking for 2 year tax returns when only need 1.</p>
                             <div class="issue-meta">
                                 <span>👤 Melissa Chapman (Underwriter)</span>
                                 <span>📅 1/15/2026</span>
                                 <span>🎯 Condition Logic</span>
-                                <span>⚠️ High Impact</span>
-                            </div>
-                        </li>
-                        <li class="issue-item severity-3">
-                            <div class="issue-header">
-                                <div class="issue-title">Paystub name mismatch</div>
-                                <span class="badge escalated">Escalated</span>
-                            </div>
-                            <p>Document reading not matching paystub names correctly</p>
-                            <div class="issue-meta">
-                                <span>📅 1/15/2026</span>
-                                <span>🎯 Document Reading</span>
-                                <span>⚠️ High Impact</span>
-                            </div>
-                        </li>
-                        <li class="issue-item severity-3">
-                            <div class="issue-header">
-                                <div class="issue-title">Wrong credit report version</div>
-                                <span class="badge resolved">Resolved</span>
-                            </div>
-                            <p>System was pulling incorrect version of credit reports</p>
-                            <div class="issue-meta">
-                                <span>📅 1/15/2026</span>
-                                <span>🎯 Document Reading</span>
-                                <span>⚠️ High Impact</span>
-                            </div>
-                        </li>
-                        <li class="issue-item severity-3">
-                            <div class="issue-header">
-                                <div class="issue-title">Results showing before scraping completes</div>
-                                <span class="badge feedback">Feedback</span>
-                            </div>
-                            <p>Initial results appear before all documents are scraped, causing confusion</p>
-                            <div class="issue-meta">
-                                <span>📅 1/15/2026</span>
-                                <span>🎯 Processing Time</span>
-                                <span>⚠️ High Impact</span>
-                            </div>
-                        </li>
-                        <li class="issue-item severity-3">
-                            <div class="issue-header">
-                                <div class="issue-title">CRA not in configuration</div>
-                                <span class="badge resolved">Resolved</span>
-                            </div>
-                            <p>Credit reporting agency configuration was missing</p>
-                            <div class="issue-meta">
-                                <span>📅 1/15/2026</span>
-                                <span>🎯 Configuration</span>
                                 <span>⚠️ High Impact</span>
                             </div>
                         </li>
@@ -687,11 +639,12 @@
                                 <div class="issue-title">1040 Statement 8 HOA dues not read</div>
                                 <span class="badge escalated">Escalated</span>
                             </div>
-                            <p>Candor did not read federal statement 8 on 1040s for HOA dues</p>
+                            <p><strong>Loan:</strong> RNN000036464 (Boscola) | Candor did not read federal statement 8 on 1040s for HOA dues</p>
                             <div class="issue-meta">
                                 <span>👤 Scott Watson (Processor)</span>
                                 <span>📅 1/15/2026</span>
                                 <span>🎯 Document Reading</span>
+                                <span>⚠️ Medium Impact</span>
                             </div>
                         </li>
                         <li class="issue-item severity-2">
@@ -699,11 +652,25 @@
                                 <div class="issue-title">Bank statement request mismatch</div>
                                 <span class="badge open">Open</span>
                             </div>
-                            <p>Candor requesting 2 months when LP only required 1 month</p>
+                            <p><strong>Loan:</strong> RSW000016663 (Wolf) | Candor Condition for 2 months Bank Statements - I have LP run and LP only required 1 month. Lock is LP.</p>
                             <div class="issue-meta">
                                 <span>👤 Dawn Schubert (Underwriter)</span>
                                 <span>📅 01.15.2026</span>
                                 <span>🎯 Condition Logic</span>
+                                <span>⚠️ Medium Impact</span>
+                            </div>
+                        </li>
+                        <li class="issue-item severity-2">
+                            <div class="issue-header">
+                                <div class="issue-title">One month statement requested</div>
+                                <span class="badge open">Open</span>
+                            </div>
+                            <p><strong>Loan:</strong> RSO000007587 (Schmidt) | One month statement being requested</p>
+                            <div class="issue-meta">
+                                <span>👤 Leigh Warnick (Processor)</span>
+                                <span>📅 15-Jan</span>
+                                <span>🎯 Condition Logic</span>
+                                <span>⚠️ Low Impact</span>
                             </div>
                         </li>
                         <li class="issue-item severity-2">
@@ -711,11 +678,12 @@
                                 <div class="issue-title">PIW Appraisal condition issue</div>
                                 <span class="badge open">Open</span>
                             </div>
-                            <p>LP PIW conditioned for full Appraisal. Assets requested but already in file</p>
+                            <p><strong>Loan:</strong> RSO000007587 (Schmidt) | LP PIW Candor conditioned for full Appraisal. Assets requested but already in file. Also have statement with checking/saving and Candor has separate condition for each account.</p>
                             <div class="issue-meta">
                                 <span>👤 Leigh Warnick (Processor)</span>
                                 <span>📅 1/15/2026</span>
                                 <span>🎯 Condition Logic</span>
+                                <span>⚠️ Medium Impact</span>
                             </div>
                         </li>
                         <li class="issue-item severity-2">
@@ -723,22 +691,25 @@
                                 <div class="issue-title">Homeowners Insurance in file not recognized</div>
                                 <span class="badge open">Open</span>
                             </div>
-                            <p>Homeowners Insurance is being requested but it is already in file</p>
+                            <p><strong>Loan:</strong> RNT000056558 (Gupta) | Homeowners Insurance is being requested but it is already in file</p>
                             <div class="issue-meta">
                                 <span>👤 Kim McClure (Processor)</span>
                                 <span>📅 1/15/2026</span>
                                 <span>🎯 Document Reading</span>
+                                <span>⚠️ Medium Impact</span>
                             </div>
                         </li>
                         <li class="issue-item severity-2">
                             <div class="issue-header">
-                                <div class="issue-title">No Candor pipeline indicator</div>
-                                <span class="badge requested">Requested</span>
+                                <div class="issue-title">Coverage amount exceeds loan amount</div>
+                                <span class="badge open">Open</span>
                             </div>
-                            <p>Need visual indicator in pipeline to show which files are using Candor</p>
+                            <p><strong>Loan:</strong> RNT000056558 (Gupta) | The coverage and replacement cost coverage notated on the policy in file is more than our loan amount and is sufficient</p>
                             <div class="issue-meta">
+                                <span>👤 Kim McClure (Processor)</span>
                                 <span>📅 1/15/2026</span>
-                                <span>🎯 User Experience</span>
+                                <span>🎯 Configuration</span>
+                                <span>⚠️ Low Impact</span>
                             </div>
                         </li>
                     </ul>
@@ -755,8 +726,8 @@
                             <div class="reporter-role">Processor</div>
                             <div class="reporter-issues">2 issues</div>
                             <ul style="margin-top: 15px; list-style: none;">
-                                <li>• PIW Appraisal condition</li>
-                                <li>• One month statement request</li>
+                                <li>• One month statement requested</li>
+                                <li>• PIW Appraisal & asset conditions</li>
                             </ul>
                         </div>
                         <div class="reporter-card">
@@ -764,8 +735,8 @@
                             <div class="reporter-role">Processor</div>
                             <div class="reporter-issues">2 issues</div>
                             <ul style="margin-top: 15px; list-style: none;">
-                                <li>• HOI not recognized</li>
-                                <li>• Coverage amount validation</li>
+                                <li>• Homeowners Insurance not recognized</li>
+                                <li>• Coverage amount validation issue</li>
                             </ul>
                         </div>
                         <div class="reporter-card">
@@ -800,15 +771,15 @@
                             <div class="metric-card primary">
                                 <h3>Processors</h3>
                                 <div class="value">5</div>
-                                <div class="label">71% of named reporters</div>
+                                <div class="label">71% of all issues (5 of 7)</div>
                             </div>
                             <div class="metric-card warning">
                                 <h3>Underwriters</h3>
                                 <div class="value">2</div>
-                                <div class="label">29% of named reporters</div>
+                                <div class="label">29% of all issues (2 of 7)</div>
                             </div>
                         </div>
-                        <p style="margin-top: 20px; color: var(--text-secondary);">This shows excellent cross-functional engagement in the pilot program!</p>
+                        <p style="margin-top: 20px; color: var(--text-secondary);">This shows excellent cross-functional engagement from 3 processors and 2 underwriters in the pilot program!</p>
                     </div>
                 </div>
             </div>
@@ -820,31 +791,19 @@
                     <div class="success-list">
                         <div class="success-item">
                             <div class="success-icon">✓</div>
-                            <div>2 files processed successfully with no issues - clean execution</div>
+                            <div>Multiple team members actively reporting issues - shows strong pilot engagement</div>
                         </div>
                         <div class="success-item">
                             <div class="success-icon">✓</div>
-                            <div>Income calculation working correctly (replaces Loan Beam functionality)</div>
+                            <div>Cross-functional feedback from both Processors and Underwriters</div>
                         </div>
                         <div class="success-item">
                             <div class="success-icon">✓</div>
-                            <div>Quick escalation and resolution process - team very responsive</div>
+                            <div>Detailed issue descriptions provided - helps development team understand problems</div>
                         </div>
                         <div class="success-item">
                             <div class="success-icon">✓</div>
-                            <div>Team proactive with feedback and communication</div>
-                        </div>
-                        <div class="success-item">
-                            <div class="success-icon">✓</div>
-                            <div>Credit report issues resolved quickly after escalation</div>
-                        </div>
-                        <div class="success-item">
-                            <div class="success-icon">✓</div>
-                            <div>Core underwriting logic functioning as expected</div>
-                        </div>
-                        <div class="success-item">
-                            <div class="success-icon">✓</div>
-                            <div>Integration with existing systems working smoothly</div>
+                            <div>Clear loan numbers and borrower names tracked for each issue</div>
                         </div>
                     </div>
                 </div>
@@ -856,42 +815,30 @@
                     <h2>🎯 Strategic Recommendations</h2>
                     <div class="recommendations">
                         <div class="rec-category">
-                            <h3>⚡ Immediate Actions (This Week)</h3>
+                            <h3>⚡ Immediate Actions - Based on Excel Issues</h3>
                             <ul>
-                                <li>Add Candor indicator field to pipeline reports (Requested by team)</li>
-                                <li>Delay showing results until document scraping completes (UX improvement)</li>
-                                <li>Resolve Fraud Alert condition logic bug (High severity, impacts UW workflow)</li>
-                                <li>Fix paystub name mismatch issue (Escalated, blocking files)</li>
+                                <li>Fix Fraud Alert condition logic (Melissa Chapman - High Priority)</li>
+                                <li>Improve 1040 Schedule 8 reading for HOA dues (Scott Watson - Escalated)</li>
+                                <li>Review bank statement condition logic - LP requirements mismatch (Dawn Schubert)</li>
                             </ul>
                         </div>
 
                         <div class="rec-category">
-                            <h3>📅 Short-Term Fixes (Next 2 Weeks)</h3>
+                            <h3>📅 Short-Term Fixes</h3>
                             <ul>
-                                <li>Improve 1040 Schedule 8 reading for HOA dues (Escalated)</li>
-                                <li>Review PIW appraisal condition logic for accuracy</li>
-                                <li>Fix bank statement condition when LP only requires 1 month</li>
-                                <li>Add configuration validation checks for CRA and AUS type</li>
-                            </ul>
-                        </div>
-
-                        <div class="rec-category">
-                            <h3>🚀 Medium-Term Enhancements (Next Month)</h3>
-                            <ul>
-                                <li>Enhance document recognition (HOI, statements already in file)</li>
-                                <li>Optimize processing time communication (set expectations)</li>
-                                <li>Review condition logic for D1C paystub scenarios</li>
-                                <li>Improve policy validation logic for coverage amounts</li>
+                                <li>Address PIW Appraisal condition requesting assets already in file (Leigh Warnick)</li>
+                                <li>Fix statement linking logic - separate conditions for combined accounts (Leigh Warnick)</li>
+                                <li>Improve Homeowners Insurance document recognition (Kim McClure)</li>
+                                <li>Review policy coverage validation logic (Kim McClure)</li>
                             </ul>
                         </div>
 
                         <div class="rec-category">
                             <h3>📚 Process Improvements</h3>
                             <ul>
-                                <li>Create Candor-specific training materials based on common issues</li>
-                                <li>Establish weekly sync to review new issues and resolutions</li>
-                                <li>Document workarounds for known issues in knowledge base</li>
-                                <li>Celebrate wins - income calculation success should be highlighted!</li>
+                                <li>Continue collecting detailed feedback in Excel format</li>
+                                <li>Follow up with reporters on issue status</li>
+                                <li>Track resolution timeline for each reported issue</li>
                             </ul>
                         </div>
                     </div>
@@ -900,8 +847,8 @@
         </div>
 
         <footer>
-            <p>📊 Candor Pilot Comprehensive Analysis | Generated: January 15, 2026</p>
-            <p style="margin-top: 10px; opacity: 0.8;">Data Source: Candor Pilot Group Teams Chat + Candor Pilot Feedback.xlsx</p>
+            <p>📊 Candor Pilot Excel Feedback Analysis | Generated: January 15, 2026</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Data Source: Candor Pilot Feedback.xlsx (Excel file only)</p>
         </footer>
     </div>
 
@@ -974,11 +921,11 @@
         new Chart(categoryCtx, {
             type: 'bar',
             data: {
-                labels: ['Condition Logic', 'Document Reading', 'User Experience', 'Configuration', 'Processing Time'],
+                labels: ['Condition Logic', 'Document Reading', 'Configuration'],
                 datasets: [{
                     label: 'Number of Issues',
-                    data: [5, 4, 3, 3, 2],
-                    backgroundColor: [chartColors.rose, chartColors.amber, chartColors.blue, chartColors.purple, chartColors.teal],
+                    data: [4, 2, 1],
+                    backgroundColor: [chartColors.rose, chartColors.amber, chartColors.purple],
                     borderRadius: 8
                 }]
             },
@@ -1006,10 +953,10 @@
         new Chart(statusCtx, {
             type: 'doughnut',
             data: {
-                labels: ['Open', 'Resolved', 'Escalated', 'Feedback', 'Known', 'Workaround', 'Requested'],
+                labels: ['Open', 'Escalated'],
                 datasets: [{
-                    data: [7, 3, 2, 2, 1, 1, 1],
-                    backgroundColor: [chartColors.blue, chartColors.teal, chartColors.rose, chartColors.amber, chartColors.purple, chartColors.green, '#64748b']
+                    data: [6, 1],
+                    backgroundColor: [chartColors.blue, chartColors.rose]
                 }]
             },
             options: {
@@ -1020,7 +967,7 @@
                         position: 'right',
                         labels: {
                             padding: 15,
-                            font: { size: 11 },
+                            font: { size: 14 },
                             color: '#e2e8f0'
                         }
                     }
@@ -1065,10 +1012,10 @@
         new Chart(severityCtx, {
             type: 'pie',
             data: {
-                labels: ['High (3)', 'Medium (2)', 'Low (1)'],
+                labels: ['High (3)', 'Medium (2)'],
                 datasets: [{
-                    data: [5, 11, 1],
-                    backgroundColor: [chartColors.rose, chartColors.amber, chartColors.teal]
+                    data: [1, 6],
+                    backgroundColor: [chartColors.rose, chartColors.amber]
                 }]
             },
             options: {
@@ -1094,7 +1041,7 @@
                 labels: ['High', 'Medium', 'Low'],
                 datasets: [{
                     label: 'Number of Issues',
-                    data: [5, 11, 1],
+                    data: [1, 4, 2],
                     backgroundColor: [chartColors.rose, chartColors.amber, chartColors.teal],
                     borderRadius: 8
                 }]
@@ -1108,7 +1055,7 @@
                 scales: {
                     y: {
                         beginAtZero: true,
-                        ticks: { stepSize: 2 },
+                        ticks: { stepSize: 1 },
                         grid: { color: 'rgba(255,255,255,0.05)' }
                     },
                     x: {
