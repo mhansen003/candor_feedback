@@ -473,30 +473,30 @@
 <body>
     <div class="container">
         <header>
-            <h1>🚀 Candor Pilot - Excel Feedback Analysis</h1>
-            <p>Analysis Date: January 15, 2026 | Data Source: Candor Pilot Feedback.xlsx</p>
+            <h1>🚀 Candor Pilot - Complete Feedback Analysis</h1>
+            <p>Analysis Date: January 15, 2026 | Data Source: Candor Pilot Feedback.xlsx | 24 Total Entries</p>
         </header>
 
         <div class="metrics-grid">
             <div class="metric-card primary">
                 <h3>Total Issues</h3>
-                <div class="value">7</div>
-                <div class="label">From Excel Feedback</div>
+                <div class="value">18</div>
+                <div class="label">Active Issues Tracked</div>
+            </div>
+            <div class="metric-card success">
+                <h3>Resolved</h3>
+                <div class="value">33.3%</div>
+                <div class="label">6 of 18 Issues Fixed</div>
             </div>
             <div class="metric-card warning">
-                <h3>Average Severity</h3>
-                <div class="value">2.14</div>
-                <div class="label">Out of 3.0</div>
+                <h3>Escalated</h3>
+                <div class="value">61%</div>
+                <div class="label">11 Need Attention</div>
             </div>
-            <div class="metric-card danger">
-                <h3>Open</h3>
-                <div class="value">85.7%</div>
-                <div class="label">6 Issues Open</div>
-            </div>
-            <div class="metric-card danger">
-                <h3>High Priority</h3>
-                <div class="value">1</div>
-                <div class="label">Severity Level 3</div>
+            <div class="metric-card primary">
+                <h3>Enhancements</h3>
+                <div class="value">5</div>
+                <div class="label">Feature Requests</div>
             </div>
         </div>
 
@@ -504,10 +504,11 @@
             <!-- Tabs Navigation -->
             <div class="tabs">
                 <button class="tab active" onclick="showTab('overview')">Overview</button>
-                <button class="tab" onclick="showTab('issues')">All Issues (7)</button>
-                <button class="tab" onclick="showTab('reporters')">Who's Reporting (5)</button>
-                <button class="tab" onclick="showTab('successes')">What's Working (4)</button>
-                <button class="tab" onclick="showTab('recommendations')">Recommendations (10)</button>
+                <button class="tab" onclick="showTab('issues')">Issues (18)</button>
+                <button class="tab" onclick="showTab('resolved')">Resolved (6)</button>
+                <button class="tab" onclick="showTab('reporters')">Reporters (9)</button>
+                <button class="tab" onclick="showTab('enhancements')">Enhancements (5)</button>
+                <button class="tab" onclick="showTab('recommendations')">Recommendations</button>
             </div>
 
             <!-- Overview Tab -->
@@ -570,19 +571,24 @@
                     <h2>🎯 Executive Summary</h2>
                     <div class="metrics-grid">
                         <div class="metric-card primary">
-                            <h3>Issue Categories</h3>
-                            <div class="value">3</div>
-                            <div class="label">Condition Logic (4), Document Reading (2), Configuration (1)</div>
+                            <h3>Top Category</h3>
+                            <div class="value">50%</div>
+                            <div class="label">Document Reading (9 issues)</div>
                         </div>
                         <div class="metric-card warning">
-                            <h3>Open Issues</h3>
-                            <div class="value">85.7%</div>
-                            <div class="label">6 issues being triaged</div>
+                            <h3>Fraud Alert Issues</h3>
+                            <div class="value">4</div>
+                            <div class="label">Major Pain Point</div>
                         </div>
-                        <div class="metric-card danger">
-                            <h3>Escalated</h3>
+                        <div class="metric-card success">
+                            <h3>Resolution Rate</h3>
+                            <div class="value">33.3%</div>
+                            <div class="label">6 of 18 resolved</div>
+                        </div>
+                        <div class="metric-card primary">
+                            <h3>Good News</h3>
                             <div class="value">1</div>
-                            <div class="label">Needs attention</div>
+                            <div class="label">One-touch final!</div>
                         </div>
                     </div>
                 </div>
@@ -591,20 +597,20 @@
                     <h2>📈 Key Insights</h2>
                     <ul class="issue-list">
                         <li class="issue-item severity-3">
-                            <div class="issue-title">✓ Condition Logic is the primary issue category</div>
-                            <p>4 of 7 issues (57%) involve condition logic - focus area for improvements</p>
+                            <div class="issue-title">✓ Document Reading is the #1 challenge</div>
+                            <p>9 of 18 issues (50%) involve document reading - paystubs, tax returns, credit, insurance</p>
+                        </li>
+                        <li class="issue-item severity-3">
+                            <div class="issue-title">✓ Fraud Alert logic needs immediate review</div>
+                            <p>4 separate Fraud Alert issues reported - condition firing incorrectly</p>
                         </li>
                         <li class="issue-item severity-2">
-                            <div class="issue-title">✓ Processors are most engaged</div>
-                            <p>5 of 7 issues (71%) reported by processors - shows hands-on pilot usage</p>
-                        </li>
-                        <li class="issue-item severity-2">
-                            <div class="issue-title">✓ Only 1 high-severity issue</div>
-                            <p>Fraud Alert condition logic - the rest are medium severity (2/3)</p>
+                            <div class="issue-title">✓ Strong resolution rate</div>
+                            <p>33.3% already resolved (6 of 18) - team is responsive and fixing issues quickly!</p>
                         </li>
                         <li class="issue-item severity-1">
-                            <div class="issue-title">✓ Strong cross-functional feedback</div>
-                            <p>Both Processors and Underwriters actively reporting - good pilot engagement</p>
+                            <div class="issue-title">✓ Excellent pilot engagement</div>
+                            <p>9 different reporters, 72% Processors (hands-on usage), 5 enhancements requested, 1 one-touch final success!</p>
                         </li>
                     </ul>
                 </div>
@@ -888,10 +894,10 @@
         new Chart(reporterCtx, {
             type: 'bar',
             data: {
-                labels: ['Leigh Warnick', 'Kim McClure', 'Melissa Chapman', 'Scott Watson', 'Dawn Schubert'],
+                labels: ['Leigh Warnick', 'Kim McClure', 'Denise Gamber', 'Scott Watson', 'Tina Jackson', 'Others'],
                 datasets: [{
                     label: 'Issues Reported',
-                    data: [2, 2, 1, 1, 1],
+                    data: [4, 4, 2, 2, 1, 5],
                     backgroundColor: chartColors.blue,
                     borderRadius: 8
                 }]
@@ -921,11 +927,11 @@
         new Chart(categoryCtx, {
             type: 'bar',
             data: {
-                labels: ['Condition Logic', 'Document Reading', 'Configuration'],
+                labels: ['Document Reading', 'Condition Logic', 'Config', 'Process'],
                 datasets: [{
                     label: 'Number of Issues',
-                    data: [4, 2, 1],
-                    backgroundColor: [chartColors.rose, chartColors.amber, chartColors.purple],
+                    data: [9, 7, 1, 1],
+                    backgroundColor: [chartColors.rose, chartColors.amber, chartColors.purple, chartColors.teal],
                     borderRadius: 8
                 }]
             },
@@ -938,7 +944,7 @@
                 scales: {
                     y: {
                         beginAtZero: true,
-                        ticks: { stepSize: 1 },
+                        ticks: { stepSize: 2 },
                         grid: { color: 'rgba(255,255,255,0.05)' }
                     },
                     x: {
@@ -953,10 +959,10 @@
         new Chart(statusCtx, {
             type: 'doughnut',
             data: {
-                labels: ['Open', 'Escalated'],
+                labels: ['Resolved', 'Escalated (Open)', 'Open (Not Escalated)'],
                 datasets: [{
-                    data: [6, 1],
-                    backgroundColor: [chartColors.blue, chartColors.rose]
+                    data: [6, 11, 1],
+                    backgroundColor: [chartColors.teal, chartColors.rose, chartColors.amber]
                 }]
             },
             options: {
@@ -967,7 +973,7 @@
                         position: 'right',
                         labels: {
                             padding: 15,
-                            font: { size: 14 },
+                            font: { size: 11 },
                             color: '#e2e8f0'
                         }
                     }
@@ -983,7 +989,7 @@
                 labels: ['Processor', 'Underwriter'],
                 datasets: [{
                     label: 'Issues Reported',
-                    data: [5, 2],
+                    data: [13, 5],
                     backgroundColor: [chartColors.rose, chartColors.amber],
                     borderRadius: 8
                 }]
@@ -997,7 +1003,7 @@
                 scales: {
                     y: {
                         beginAtZero: true,
-                        ticks: { stepSize: 1 },
+                        ticks: { stepSize: 2 },
                         grid: { color: 'rgba(255,255,255,0.05)' }
                     },
                     x: {
@@ -1007,15 +1013,15 @@
             }
         });
 
-        // Severity Distribution Chart
+        // Document Reading Breakdown Chart (renamed from Severity)
         const severityCtx = document.getElementById('severityChart').getContext('2d');
         new Chart(severityCtx, {
             type: 'pie',
             data: {
-                labels: ['High (3)', 'Medium (2)'],
+                labels: ['Income Docs', 'Tax Returns', 'Credit', 'Insurance'],
                 datasets: [{
-                    data: [1, 6],
-                    backgroundColor: [chartColors.rose, chartColors.amber]
+                    data: [4, 2, 2, 1],
+                    backgroundColor: [chartColors.rose, chartColors.amber, chartColors.blue, chartColors.purple]
                 }]
             },
             options: {
@@ -1025,23 +1031,30 @@
                     legend: {
                         position: 'bottom',
                         labels: {
-                            padding: 15,
+                            padding: 12,
+                            font: { size: 11 },
                             color: '#e2e8f0'
                         }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Document Reading Breakdown',
+                        color: '#e2e8f0',
+                        font: { size: 13 }
                     }
                 }
             }
         });
 
-        // Impact Distribution Chart
+        // Condition Logic Breakdown Chart (renamed from Impact)
         const impactCtx = document.getElementById('impactChart').getContext('2d');
         new Chart(impactCtx, {
             type: 'bar',
             data: {
-                labels: ['High', 'Medium', 'Low'],
+                labels: ['Fraud Alert', 'Assets', 'Appraisal'],
                 datasets: [{
                     label: 'Number of Issues',
-                    data: [1, 4, 2],
+                    data: [4, 2, 1],
                     backgroundColor: [chartColors.rose, chartColors.amber, chartColors.teal],
                     borderRadius: 8
                 }]
@@ -1050,7 +1063,13 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { display: false }
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Condition Logic Breakdown',
+                        color: '#e2e8f0',
+                        font: { size: 13 }
+                    }
                 },
                 scales: {
                     y: {
