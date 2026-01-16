@@ -504,11 +504,12 @@
             <!-- Tabs Navigation -->
             <div class="tabs">
                 <button class="tab active" onclick="showTab('overview')">Overview</button>
+                <button class="tab" onclick="showTab('calendar')">📅 Calendar Heatmap</button>
                 <button class="tab" onclick="showTab('issues')">Issues (18)</button>
                 <button class="tab" onclick="showTab('resolved')">Resolved (6)</button>
                 <button class="tab" onclick="showTab('reporters')">Reporters (9)</button>
                 <button class="tab" onclick="showTab('enhancements')">Enhancements (5)</button>
-                <button class="tab" onclick="showTab('recommendations')">Recommendations</button>
+                <button class="tab" onclick="showTab('recommendations')">🤖 AI Recommendations</button>
             </div>
 
             <!-- Overview Tab -->
@@ -613,6 +614,133 @@
                             <p>9 different reporters, 72% Processors (hands-on usage), 5 enhancements requested, 1 one-touch final success!</p>
                         </li>
                     </ul>
+                </div>
+            </div>
+
+            <!-- Calendar Heatmap Tab -->
+            <div id="calendar" class="tab-content">
+                <div class="section">
+                    <h2>📅 Pilot Activity Calendar - January 2026</h2>
+                    <p style="margin-bottom: 30px; color: var(--text-secondary);">Daily heatmap showing issues, resolutions, and enhancements reported during the pilot</p>
+
+                    <div style="background: var(--bg-card); padding: 30px; border-radius: 12px; margin-bottom: 30px;">
+                        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; max-width: 800px; margin: 0 auto;">
+                            <!-- Calendar Header -->
+                            <div style="text-align: center; font-weight: 600; color: var(--text-primary); padding: 10px;">Sun</div>
+                            <div style="text-align: center; font-weight: 600; color: var(--text-primary); padding: 10px;">Mon</div>
+                            <div style="text-align: center; font-weight: 600; color: var(--text-primary); padding: 10px;">Tue</div>
+                            <div style="text-align: center; font-weight: 600; color: var(--text-primary); padding: 10px;">Wed</div>
+                            <div style="text-align: center; font-weight: 600; color: var(--text-primary); padding: 10px;">Thu</div>
+                            <div style="text-align: center; font-weight: 600; color: var(--text-primary); padding: 10px;">Fri</div>
+                            <div style="text-align: center; font-weight: 600; color: var(--text-primary); padding: 10px;">Sat</div>
+
+                            <!-- Empty cells for start of month (Jan 1 = Wednesday) -->
+                            <div></div>
+                            <div></div>
+                            <div></div>
+
+                            <!-- Jan 1-10 -->
+                            <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); padding: 15px; border-radius: 8px; text-align: center;"><div style="font-size: 18px; font-weight: 600;">1</div><div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">No activity</div></div>
+                            <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); padding: 15px; border-radius: 8px; text-align: center;"><div style="font-size: 18px; font-weight: 600;">2</div><div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">No activity</div></div>
+                            <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); padding: 15px; border-radius: 8px; text-align: center;"><div style="font-size: 18px; font-weight: 600;">3</div><div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">No activity</div></div>
+                            <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); padding: 15px; border-radius: 8px; text-align: center;"><div style="font-size: 18px; font-weight: 600;">4</div><div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">No activity</div></div>
+
+                            <!-- Week 2 -->
+                            <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); padding: 15px; border-radius: 8px; text-align: center;"><div style="font-size: 18px; font-weight: 600;">5</div><div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">No activity</div></div>
+                            <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); padding: 15px; border-radius: 8px; text-align: center;"><div style="font-size: 18px; font-weight: 600;">6</div><div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">No activity</div></div>
+                            <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); padding: 15px; border-radius: 8px; text-align: center;"><div style="font-size: 18px; font-weight: 600;">7</div><div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">No activity</div></div>
+                            <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); padding: 15px; border-radius: 8px; text-align: center;"><div style="font-size: 18px; font-weight: 600;">8</div><div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">No activity</div></div>
+                            <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); padding: 15px; border-radius: 8px; text-align: center;"><div style="font-size: 18px; font-weight: 600;">9</div><div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">No activity</div></div>
+                            <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); padding: 15px; border-radius: 8px; text-align: center;"><div style="font-size: 18px; font-weight: 600;">10</div><div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">No activity</div></div>
+                            <!-- Jan 11 - First activity! -->
+                            <div style="background: linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(20, 184, 166, 0.1)); border: 2px solid var(--accent-teal); padding: 15px; border-radius: 8px; text-align: center;"><div style="font-size: 18px; font-weight: 600; color: var(--accent-teal);">11</div><div style="font-size: 10px; color: var(--text-secondary); margin-top: 5px; font-weight: 600;">1 Enhancement</div><div style="font-size: 9px; color: var(--text-muted);">Title commitment</div></div>
+
+                            <!-- Week 3 -->
+                            <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); padding: 15px; border-radius: 8px; text-align: center;"><div style="font-size: 18px; font-weight: 600;">12</div><div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">No activity</div></div>
+                            <!-- Jan 13 - Good day! -->
+                            <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(16, 185, 129, 0.1)); border: 2px solid #10b981; padding: 15px; border-radius: 8px; text-align: center;"><div style="font-size: 18px; font-weight: 600; color: #10b981;">13</div><div style="font-size: 10px; color: var(--text-secondary); margin-top: 5px; font-weight: 600;">3 Items ✅</div><div style="font-size: 9px; color: var(--text-muted);">2 resolved!</div></div>
+                            <!-- Jan 14 - PEAK DAY! -->
+                            <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(245, 158, 11, 0.1)); border: 3px solid var(--accent-amber); padding: 15px; border-radius: 8px; text-align: center; box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);"><div style="font-size: 18px; font-weight: 600; color: var(--accent-amber);">14</div><div style="font-size: 10px; color: var(--text-secondary); margin-top: 5px; font-weight: 600;">🔥 8 Items</div><div style="font-size: 9px; color: var(--text-muted);">Peak activity + Good News!</div></div>
+                            <!-- Jan 15 - PEAK DAY! -->
+                            <div style="background: linear-gradient(135deg, rgba(244, 63, 94, 0.3), rgba(244, 63, 94, 0.1)); border: 3px solid var(--accent-rose); padding: 15px; border-radius: 8px; text-align: center; box-shadow: 0 0 20px rgba(244, 63, 94, 0.3);"><div style="font-size: 18px; font-weight: 600; color: var(--accent-rose);">15</div><div style="font-size: 10px; color: var(--text-secondary); margin-top: 5px; font-weight: 600;">🔥 8 Items</div><div style="font-size: 9px; color: var(--text-muted);">Most issues reported</div></div>
+                            <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); padding: 15px; border-radius: 8px; text-align: center;"><div style="font-size: 18px; font-weight: 600;">16</div><div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">No activity</div></div>
+                            <!-- Jan 17 -->
+                            <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.1)); border: 2px solid var(--accent-blue); padding: 15px; border-radius: 8px; text-align: center;"><div style="font-size: 18px; font-weight: 600; color: var(--accent-blue);">17</div><div style="font-size: 10px; color: var(--text-secondary); margin-top: 5px; font-weight: 600;">2 Issues</div><div style="font-size: 9px; color: var(--text-muted);">Leigh Warnick</div></div>
+                            <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); padding: 15px; border-radius: 8px; text-align: center;"><div style="font-size: 18px; font-weight: 600;">18</div><div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">Weekend</div></div>
+                        </div>
+
+                        <!-- Legend -->
+                        <div style="margin-top: 40px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 30px; height: 30px; background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: 6px;"></div>
+                                <span style="color: var(--text-secondary);">No Activity</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 30px; height: 30px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(16, 185, 129, 0.1)); border: 2px solid #10b981; border-radius: 6px;"></div>
+                                <span style="color: var(--text-secondary);">Good Day (Resolved)</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 30px; height: 30px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.1)); border: 2px solid var(--accent-blue); border-radius: 6px;"></div>
+                                <span style="color: var(--text-secondary);">Moderate Activity</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 30px; height: 30px; background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(245, 158, 11, 0.1)); border: 3px solid var(--accent-amber); border-radius: 6px;"></div>
+                                <span style="color: var(--text-secondary);">Peak Activity</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 30px; height: 30px; background: linear-gradient(135deg, rgba(244, 63, 94, 0.3), rgba(244, 63, 94, 0.1)); border: 3px solid var(--accent-rose); border-radius: 6px;"></div>
+                                <span style="color: var(--text-secondary);">High Issue Count</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2>📊 Daily Breakdown</h2>
+                        <div class="metrics-grid">
+                            <div class="metric-card success">
+                                <h3>Best Day</h3>
+                                <div class="value">Jan 13</div>
+                                <div class="label">2 issues resolved ✅</div>
+                            </div>
+                            <div class="metric-card warning">
+                                <h3>Peak Days</h3>
+                                <div class="value">Jan 14-15</div>
+                                <div class="label">16 items total (8 each day)</div>
+                            </div>
+                            <div class="metric-card primary">
+                                <h3>Active Days</h3>
+                                <div class="value">5 of 18</div>
+                                <div class="label">28% of month with activity</div>
+                            </div>
+                            <div class="metric-card success">
+                                <h3>Good News Day</h3>
+                                <div class="value">Jan 14</div>
+                                <div class="label">One-touch final! 🎉</div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 30px;">
+                            <h3 style="color: var(--accent-blue); margin-bottom: 15px;">Key Observations</h3>
+                            <ul class="issue-list">
+                                <li class="issue-item severity-1">
+                                    <div class="issue-title">📈 Activity Ramp-Up Pattern</div>
+                                    <p>Pilot started slow (Jan 11), then ramped dramatically on Jan 14-15. This suggests initial pilot testing followed by broader rollout.</p>
+                                </li>
+                                <li class="issue-item severity-2">
+                                    <div class="issue-title">🔥 Peak Issue Days Correlation</div>
+                                    <p>Jan 14-15 had 16 total items (8 each). Jan 14 had the good news (one-touch final), but also 6 issues + 1 enhancement. This represents peak usage and discovery.</p>
+                                </li>
+                                <li class="issue-item severity-1">
+                                    <div class="issue-title">✅ Quick Resolution Indicator</div>
+                                    <p>Jan 13 shows 2 resolved issues (FHA Scorecard, Pay Stubs). Fast turnaround indicates responsive support team.</p>
+                                </li>
+                                <li class="issue-item severity-2">
+                                    <div class="issue-title">📅 Weekend Gap</div>
+                                    <p>No activity on weekends (Jan 11 is Saturday, Jan 18 is Saturday). Pilot follows business hours pattern.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1272,33 +1400,81 @@
             <!-- Recommendations Tab -->
             <div id="recommendations" class="tab-content">
                 <div class="section">
-                    <h2>🎯 Strategic Recommendations</h2>
+                    <h2>🤖 AI-Generated Strategic Recommendations</h2>
+                    <p style="margin-bottom: 20px; color: var(--text-secondary);">Based on analysis of 18 issues, 5 enhancements, and resolution patterns from the Candor pilot</p>
+
                     <div class="recommendations">
                         <div class="rec-category">
-                            <h3>⚡ Immediate Actions - Based on Excel Issues</h3>
+                            <h3>🔴 CRITICAL: Fraud Alert Logic Review (4 issues)</h3>
                             <ul>
-                                <li>Fix Fraud Alert condition logic (Melissa Chapman - High Priority)</li>
-                                <li>Improve 1040 Schedule 8 reading for HOA dues (Scott Watson - Escalated)</li>
-                                <li>Review bank statement condition logic - LP requirements mismatch (Dawn Schubert)</li>
+                                <li><strong>Pattern Detected:</strong> 4 separate Fraud Alert conditions firing incorrectly across different loans and reporters</li>
+                                <li><strong>Root Cause:</strong> Logic reading "Fraud Messages" on Xactus credit reports as actual fraud alerts requiring borrower contact</li>
+                                <li><strong>Impact:</strong> 22% of all issues - highest single issue type</li>
+                                <li><strong>Action Required:</strong> Review condition logic to distinguish between fraud messages vs. actual fraud alerts. Escalated to CMG leadership (Kristine/Trish/Melinda).</li>
+                                <li><strong>Reporters Affected:</strong> Melissa Chapman, Scott Watson (2x), Kim McClure</li>
                             </ul>
                         </div>
 
                         <div class="rec-category">
-                            <h3>📅 Short-Term Fixes</h3>
+                            <h3>🟠 HIGH PRIORITY: Document Reading AI/ML Models (9 issues - 50%)</h3>
                             <ul>
-                                <li>Address PIW Appraisal condition requesting assets already in file (Leigh Warnick)</li>
-                                <li>Fix statement linking logic - separate conditions for combined accounts (Leigh Warnick)</li>
-                                <li>Improve Homeowners Insurance document recognition (Kim McClure)</li>
-                                <li>Review policy coverage validation logic (Kim McClure)</li>
+                                <li><strong>Paystub Recognition (4 issues):</strong> LIV not consistently reading paystubs, especially with commission income and variable pay. 3 of 4 resolved - continue monitoring.</li>
+                                <li><strong>Tax Return Reading (2 issues):</strong> 1040 Schedule 8 and Schedule E not being parsed correctly. 1 escalated to Candor.</li>
+                                <li><strong>Credit Report Providers (2 issues):</strong> Partners credit provider not initially supported - resolved by adding to CMG account. Monitor for other providers.</li>
+                                <li><strong>Insurance Docs (1 issue):</strong> HOI document recognition needs improvement.</li>
+                                <li><strong>Recommendation:</strong> Prioritize ML model training on these document types. Consider expanding eligible document list.</li>
                             </ul>
                         </div>
 
                         <div class="rec-category">
-                            <h3>📚 Process Improvements</h3>
+                            <h3>🟡 MEDIUM PRIORITY: Condition Logic Refinement</h3>
                             <ul>
-                                <li>Continue collecting detailed feedback in Excel format</li>
-                                <li>Follow up with reporters on issue status</li>
-                                <li>Track resolution timeline for each reported issue</li>
+                                <li><strong>Asset/Statement Conditions:</strong> Creating separate conditions for combined checking/saving statements - needs consolidation logic</li>
+                                <li><strong>LP vs Manual Requirements:</strong> Candor requesting 2 months when LP only requires 1 - sync with AUS findings</li>
+                                <li><strong>PIW Appraisal Logic:</strong> Requesting full appraisal when PIW exists - review condition passthrough</li>
+                                <li><strong>Recommendation:</strong> Audit condition generation logic against AUS findings to prevent over-conditioning</li>
+                            </ul>
+                        </div>
+
+                        <div class="rec-category">
+                            <h3>✅ WHAT'S WORKING: Celebrate & Replicate</h3>
+                            <ul>
+                                <li><strong>33.3% Resolution Rate:</strong> 6 of 18 issues resolved within 1-2 days - excellent team responsiveness!</li>
+                                <li><strong>One-Touch Final Achieved:</strong> Loan RFL0000023269 (Ciocca) processed with zero issues - proof of concept success</li>
+                                <li><strong>Cross-Functional Engagement:</strong> 9 reporters from Processors (72%) and Underwriters (28%) - strong pilot adoption</li>
+                                <li><strong>Quick Hotfixes:</strong> FHA Scorecard issue resolved same-day with hotfix deployed and validated</li>
+                                <li><strong>Recommendation:</strong> Share one-touch final success story as pilot win. Continue rapid response model.</li>
+                            </ul>
+                        </div>
+
+                        <div class="rec-category">
+                            <h3>💡 ENHANCEMENT REQUESTS: Prioritization</h3>
+                            <ul>
+                                <li><strong>P0 - Delay Results Until Processing:</strong> Prevents user confusion (Jessica Boeggeman request) - aligns with UX best practices</li>
+                                <li><strong>P1 - Truv Integration:</strong> Ticket #92860 already opened - enables faster income verification</li>
+                                <li><strong>P2 - Title Commitment Reading:</strong> Expands document coverage (Jina Choi request)</li>
+                                <li><strong>P3 - Hold Back Flood/Insurance:</strong> Requires leadership approval - coordinate with Kristine/Trish/Melinda</li>
+                                <li><strong>P4 - Doc Version Management:</strong> Storage optimization - lower priority but good hygiene</li>
+                            </ul>
+                        </div>
+
+                        <div class="rec-category">
+                            <h3>📊 DATA-DRIVEN INSIGHTS</h3>
+                            <ul>
+                                <li><strong>Peak Issue Days:</strong> Jan 14-15 (9 issues reported) - monitor for pilot fatigue or actual system issues</li>
+                                <li><strong>Top Reporters:</strong> Leigh Warnick & Kim McClure (4 each) - power users, great feedback source</li>
+                                <li><strong>Category Distribution:</strong> 50% Document Reading, 39% Condition Logic, 11% Config/Process</li>
+                                <li><strong>Escalation Rate:</strong> 61% escalated shows issues are being properly triaged</li>
+                                <li><strong>Recommendation:</strong> Weekly sync with power users for deeper feedback. Track resolution time by category.</li>
+                            </ul>
+                        </div>
+
+                        <div class="rec-category">
+                            <h3>🎯 30-60-90 Day Plan</h3>
+                            <ul>
+                                <li><strong>Next 30 Days:</strong> Fix Fraud Alert logic, improve paystub reading, deploy 3 P0 enhancements</li>
+                                <li><strong>60 Days:</strong> Expand credit provider support, refine asset/statement logic, train on 1040 schedules</li>
+                                <li><strong>90 Days:</strong> Add title commitment reading, implement all 5 enhancements, target 50% one-touch final rate</li>
                             </ul>
                         </div>
                     </div>
